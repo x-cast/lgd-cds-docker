@@ -34,10 +34,7 @@ services:
     image: kip9696/lgd-cds-node:latest
     restart: always
     privileged: true
-    networks:
-      transnetwork:
-        aliases:
-          - cds
+    network_mode: host
     environment:
       - CDS_NAME=${CDS_NAME}
       - CDS_LOCATION=${CDS_LOCATION}
