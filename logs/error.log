@@ -1,0 +1,1 @@
+2023/11/09 02:47:04 [error] 9#9: *1 SSL_do_handshake() failed (SSL: error:0A00010B:SSL routines::wrong version number) while SSL handshaking to upstream, client: 192.168.65.1, server: ${cds_domain}, request: "GET / HTTP/1.1", upstream: "https://1.1.1.1:80/", host: "localhost"
