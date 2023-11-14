@@ -43,6 +43,7 @@ services:
       - CDS_LOCATION=${CDS_LOCATION}
       - CDS_TYPE=${CDS_TYPE}
       - CMS_HOST=${CMS_HOST}
+      - LOCAL_IP=${LOCAL_IP} #CDS IP
       - PARENT_CDS_HOST=${PARENT_CDS_HOST}
 
 networks:
