@@ -42,6 +42,7 @@ services:
       - CDS_TYPE=${CDS_TYPE}
       - CMS_HOST=${CMS_HOST}
       - LOCAL_IP=${LOCAL_IP} #CDS IP
+      - LOCAL_DOMAIN=${LOCAL_DOMAIN} #CDS DOMAIN
       - PARENT_CDS_HOST=${PARENT_CDS_HOST}
 # networks:
 #   transnetwork:
