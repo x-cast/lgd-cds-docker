@@ -18,7 +18,7 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./cache:/data/vod_cache
       - ./ssl:/etc/nginx/ssl
-      - ./logs/error.log:/etc/nginx/logs/error.log
+      - ./logs/:/etc/nginx/logs/
     environment:
       - LMS=${LMS} #CORS LMS DOMAIN
       - CMS=${CMS} #CORS CMS DOMAIN
