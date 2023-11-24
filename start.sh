@@ -4,6 +4,7 @@ cd /data/lgd-cds-docker
 source .env
 mkdir ssl
 mkdir logs
+mkdir cache
 
 curl -L "${CMS}/get/ssl/chain/${LOCAL_IP}" > "./ssl/chain.pem";
 curl -L "${CMS}/get/ssl/key/${LOCAL_IP}" > "./ssl/key.pem";
