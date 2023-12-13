@@ -4,10 +4,10 @@ cryptsetup luksAddKey /dev/sda3 ~/usb_secret.key --key-slot 1 # /dev/sda3 ==> 1�
 ## 암호 입력
 
 ln /dev/sdb /dev/usbdevice # /dev/sdb ==> 1번에서 확인한 USB device
-echo \"SUBSYSTEMS=="usb", DRIVERS=="usb", SYMLINK+="usbdevice%n"\" > /etc/udev/rules.d/99-custom-usb.rules
+echo 'SUBSYSTEMS=="usb", DRIVERS=="usb", SYMLINK+="usbdevice%n"' > /etc/udev/rules.d/99-custom-usb.rules
 udevadm control --reload-rules
 
-echo "
+echo '
 #!/bin/sh
 TRUE=0
 FALSE=1
@@ -31,13 +31,13 @@ echo "Successfully used usb as key." >&2
 fi
 
 sleep 2
-" > /usr/local/sbin/openluksdevices.sh
+' > /usr/local/sbin/openluksdevices.sh
 chmod a+x /usr/local/sbin/openluksdevices.sh
 
 echo ,keyscript=/usr/local/sbin/openluksdevices.sh >> /etc/crypttab
 
 echo CRYPTROOT=target=sda3_crypt,source=/dev/disk/by-uuid/${UUID!!} > /etc/initramfs-tools/conf.d/cryptroot #taget 확인하고, UUID 수정하자 
-echo "
+echo '
 #!/bin/sh
 PREREQ="udev"
 prereqs()
@@ -58,5 +58,5 @@ esac
 cp /etc/udev/rules.d/99-custom-usb.rules ${DESTDIR}/lib/udev/rules.d/
 
 exit 0
-" > /etc/initramfs-tools/hooks/udevusbkey.sh
+' > /etc/initramfs-tools/hooks/udevusbkey.sh
 chmod a+x /etc/initramfs-tools/hooks/udevusbkey.sh
