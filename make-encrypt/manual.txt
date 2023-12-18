@@ -3,7 +3,7 @@ vi /etc/default/grub ## << 를 실행 후
 
 ## GRUB_CMDLINE_LINUX_DEFAULT 부분을 아래와같이 수정
 
-rootdelay=20 cryptopts=target=sda3_crypt,source=/dev/disk/by-uuid/${UUID},keyscript=/usr/local/sbin/openluksdevices.sh
+rootdelay=20 cryptopts=target=${CRYPTO디바이스},source=/dev/disk/by-uuid/${UUID},keyscript=/usr/local/sbin/openluksdevices.sh
 
 ## 저장 후 
 update-grub ## 입력
