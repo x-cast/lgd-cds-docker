@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cryptsetup luksAddKey ${암호화된디바이스} ~/usb_secret.key --key-slot 1 # /dev/sda3 ==> 1번에서 blkid 를 통해 확인한 crypto device
+cryptsetup luksAddKey ${NOCRYPT디바이스} ~/usb_secret.key --key-slot 1 # /dev/sda3 ==> 1번에서 blkid 를 통해 확인한 crypt device
 ## 암호 입력
 
 ln ${USB} /dev/usbdevice # /dev/sdb ==> 1번에서 확인한 USB device
@@ -33,9 +33,9 @@ sleep 2
 ' > /usr/local/sbin/openluksdevices.sh
 chmod a+x /usr/local/sbin/openluksdevices.sh
 
-echo -n ',keyscript=/usr/local/sbin/openluksdevices.sh' >> /etc/crypttab ##이부분 들어가서 줄바꿈 되어있으면 위로 올리기
+echo -n ',keyscript=/usr/local/sbin/openluksdevices.sh' >> /etc/crypttab ##이부분 들어가서 줄바꿈 위로 올리기
 
-echo CRYPTROOT=target=${CRYPTO디바이스},source=/dev/disk/by-uuid/${UUID!!} > /etc/initramfs-tools/conf.d/cryptroot #taget 확인하고, UUID 수정하자 
+echo CRYPTROOT=target=${CRYPT디바이스},source=/dev/disk/by-uuid/${NOCRYPT디바이스UUID} > /etc/initramfs-tools/conf.d/cryptroot #taget 확인하고, UUID 수정하자 
 echo '#!/bin/sh
 PREREQ="udev"
 prereqs()
