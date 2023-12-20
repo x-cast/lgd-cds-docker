@@ -58,3 +58,7 @@ cp /etc/udev/rules.d/99-custom-usb.rules ${DESTDIR}/lib/udev/rules.d/
 exit 0
 ' > /etc/initramfs-tools/hooks/udevusbkey.sh
 chmod a+x /etc/initramfs-tools/hooks/udevusbkey.sh
+
+echo 'You Must Remove Newline in /etc/crypttab!!!!'
+echo 'You Must Remove Newline in /etc/crypttab!!!!'
+echo 'You Must Remove Newline in /etc/crypttab!!!!'
