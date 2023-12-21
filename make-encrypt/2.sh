@@ -3,7 +3,6 @@
 cryptsetup luksAddKey ${NOCRYPT디바이스} ~/usb_secret.key --key-slot 1 # /dev/sda3 ==> 1번에서 blkid 를 통해 확인한 crypt device
 ## 암호 입력
 
-ln ${USB} /dev/usbdevice # /dev/sdb ==> 1번에서 확인한 USB device
 echo 'SUBSYSTEMS=="usb", DRIVERS=="usb", SYMLINK+="usbdevice%n"' > /etc/udev/rules.d/99-custom-usb.rules
 udevadm control --reload-rules
 
