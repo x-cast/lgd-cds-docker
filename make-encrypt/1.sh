@@ -7,7 +7,6 @@ cryptsetup luksAddKey /dev/${NOCRYPTDEVICE} /media/usb/key
 umount /media/usb
 fatlabel /dev/${USBPARTITION} USBKEY
 fatlabel /dev/${USBPARTITION} USBKEY
-## if mount usb device, u have to umount device
 
 ## manual !! 
 ## vi /etc/crypttab
