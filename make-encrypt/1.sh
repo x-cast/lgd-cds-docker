@@ -1,12 +1,12 @@
 ## u must excute on root permission [ sudo su ] ##
 sudo apt install dosfstools -y
 mkdir /media/usb
-mount /dev/${USBDEVICE} /media/usb
+mount /dev/${USBPARTITION} /media/usb ## ex) /dev/sda1
 dd if=/dev/urandom of=/media/usb/key bs=2048 count=4
 cryptsetup luksAddKey /dev/${NOCRYPTDEVICE} /media/usb/key
 umount /media/usb
-fatlabel /dev/${USBDEVICE} USBKEY
-fatlabel /dev/${USBDEVICE} USBKEY
+fatlabel /dev/${USBPARTITION} USBKEY
+fatlabel /dev/${USBPARTITION} USBKEY
 ## if mount usb device, u have to umount device
 
 ## manual !! 

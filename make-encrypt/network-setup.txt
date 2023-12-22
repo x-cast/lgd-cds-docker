@@ -1,0 +1,22 @@
+sudo su
+netplan generate
+cd /etc/netplan
+cp 01-network-manager-all.yaml 01-network-manager-all.yaml.backup
+vi 01-network-manager-all.yaml
+
+>>
+network:
+  version: 2
+  renderer: NetworkManager
+  ethernets:
+    enp2s0:
+      dhcp6: no
+      dhcp4: no
+      addresses: [IP:/24]
+      gateway4: GATEWAY
+      netmask: NETMASK
+      nameservers:
+        addresses: [DNS]
+
+
+sudo netplan apply
