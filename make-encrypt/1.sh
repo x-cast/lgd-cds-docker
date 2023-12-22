@@ -1,10 +1,13 @@
-#!/bin/bash
+## u must excute on root permission [ sudo su ] ##
 
-## 모든 명령어는 sudo su를 친상태에서 실행 [root 권한으로]
-## lsblk 입력해서 usb name 확인하자  ##
+dd if=/dev/urandom of=${MOUNTDEVICE}/key bs=2048 count=4
+cryptsetup luksAddKey /dev/${NOCRYPTDEVICE} ${MOUNTDEVICE}/key
+fatlabel /dev/${USBDEVICE} USBKEY
+## if mount usb device, u have to umount device
 
-sudo dd if=/dev/urandom of=${USB} bs=512 seek=4 count=16 ## /dev/sdb is the USB drive
-sudo dd if=${USB} of=~/usb_secret.key bs=512 skip=4 count=16 ## 마찬가지로 확인
-xxd ~/usb_secret.key
+## manual !! 
+## vi /etc/crypttab
+## cryptroot UUID=452ac6ac-8bbb-484f-b508-a11a5585e031 none luks <<< 
+## >>>> cryptroot UUID=452ac6ac-8bbb-484f-b508-a11a5585e031 /dev/disk/by-label/USBKEY:/key:20 luks,keyscript=/lib/cryptsetup/scripts/passdev
+## update-initramfs -k all -u
 
-blkid # 여기서 crypto device 확인
